@@ -76,24 +76,7 @@ questionList = [
     choiceD: "8D",
     correctChoice: choiceD,
   }),
-  (question9 = {
-    text: "What is a question9?",
-    choiceA: "9A",
-    choiceB: "9B",
-    choiceC: "9C",
-    choiceD: "9D",
-    correctChoice: choiceC,
-  }),
-  (question10 = {
-    text: "What is a question10?",
-    choiceA: "10A",
-    choiceB: "10B",
-    choiceC: "10C",
-    choiceD: "10D",
-    correctChoice: choiceA,
-  }),
 ];
-
 var currentQ = 0;
 var score = 0;
 
@@ -105,7 +88,7 @@ startButton.addEventListener("click", function (event) {
   showQuestion(questionList[currentQ]);
 });
 
-// retrieves the question and answer choices for the given question from the questionList
+// retrieves the question and answer choices for the given question from the questionList and renders them to the question text and the answer buttons
 function showQuestion(questionNumber) {
   questionTextSpot.textContent = questionNumber.text;
   buttonA.textContent = questionNumber.choiceA;
@@ -121,14 +104,20 @@ questionsDiv.addEventListener("click", function (event) {
     feedback.textContent = "Correct!";
     score = score + 10;
     // if there are still questions left in the questionList, currentQ is increased by one and showQuestion() is run again with an argument of the new currentQ-position of the questionList, moving us to the next question in order
-    if (currentQ < 9) {
+    if (currentQ < questionList.length - 1) {
       currentQ++;
       showQuestion(questionList[currentQ]);
-      // if there are no more questions in the quesitonList, make the questions div disappear and the finished div appear, and render the score value in the scoreSpan
+      // if there are no more questions in the questionList, create a "finish quiz" button and append it underneath the last question
+      // TODO: make it so that this only happens once; currently if you keep clicking the correct answer for the last question it keeps creating new "finish quiz" buttons
     } else {
-      questionsDiv.setAttribute("style", "display: none");
-      finished.setAttribute("style", "visibility: visible");
-      scoreSpan.textContent = score;
+      finishButton = document.createElement("button");
+      finishButton.textContent = "Finish Quiz";
+      questionsDiv.appendChild(finishButton);
+      finishButton.addEventListener("click", function () {
+        questionsDiv.setAttribute("style", "display: none");
+        finished.setAttribute("style", "visibility: visible");
+        scoreSpan.textContent = score;
+      });
     }
   } else {
     feedback.textContent = "Incorrect, try again.";
