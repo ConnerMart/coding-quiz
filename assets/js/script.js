@@ -110,10 +110,10 @@ function checkAnswer(event) {
       currentQ++;
       showQuestion(questionList[currentQ]);
       // if there are no more questions in the questionList, create a "finish quiz" button and append it underneath the last question
-      // TODO: make it so that this only happens once; currently if you keep clicking the correct answer for the last question it keeps creating new "finish quiz" buttons
     } else {
       finishButton = document.createElement("button");
       finishButton.textContent = "Finish Quiz";
+      // removes old event listener so that "finish quiz" buttons don't keep appearing if you keep clicking on the correct answer of the final question
       questionsDiv.removeEventListener("click", checkAnswer);
       questionsDiv.appendChild(finishButton);
       finishButton.addEventListener("click", function () {
