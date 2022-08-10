@@ -97,7 +97,9 @@ function showQuestion(questionNumber) {
   buttonD.textContent = questionNumber.choiceD;
 }
 
-questionsDiv.addEventListener("click", function (event) {
+questionsDiv.addEventListener("click", checkAnswer);
+
+function checkAnswer(event) {
   event.preventDefault();
   // if the target of the click is the same as the correct choice of the current question, feedback is given and score is increased by 10
   if (event.target === questionList[currentQ].correctChoice) {
@@ -112,6 +114,7 @@ questionsDiv.addEventListener("click", function (event) {
     } else {
       finishButton = document.createElement("button");
       finishButton.textContent = "Finish Quiz";
+      questionsDiv.removeEventListener("click", checkAnswer);
       questionsDiv.appendChild(finishButton);
       finishButton.addEventListener("click", function () {
         questionsDiv.setAttribute("style", "display: none");
@@ -124,4 +127,4 @@ questionsDiv.addEventListener("click", function (event) {
     score = score - 5;
     // TODO: remove time from timer
   }
-});
+}
