@@ -9,6 +9,7 @@ buttonD = document.querySelector("#choiceD");
 feedback = document.querySelector("#feedback");
 finished = document.querySelector("#finished");
 scoreSpan = document.querySelector("#score");
+timerDisplay = document.querySelector("#timer");
 
 // array of question objects, which each have values for their question text, answer choices, and correct answer choice
 questionList = [
@@ -52,39 +53,17 @@ questionList = [
     choiceD: "5D",
     correctChoice: choiceC,
   }),
-  (question6 = {
-    text: "What is a question6?",
-    choiceA: "6A",
-    choiceB: "6B",
-    choiceC: "6C",
-    choiceD: "6D",
-    correctChoice: choiceB,
-  }),
-  (question7 = {
-    text: "What is a question7?",
-    choiceA: "7A",
-    choiceB: "7B",
-    choiceC: "7C",
-    choiceD: "7D",
-    correctChoice: choiceB,
-  }),
-  (question8 = {
-    text: "What is a question8?",
-    choiceA: "8A",
-    choiceB: "8B",
-    choiceC: "8C",
-    choiceD: "8D",
-    correctChoice: choiceD,
-  }),
 ];
 var currentQ = 0;
 var score = 0;
+var timeLeft = 30;
 
 // when the start button is clicked, make the start div disappear and the questions div appear, then run the showQuestions() function with an argument of the currentQ-position of the questionList, which is set to 0 to begin with, so the first question will be shown
 startButton.addEventListener("click", function (event) {
   event.preventDefault();
   startPage.setAttribute("style", "display: none");
   questionsDiv.setAttribute("style", "visibility: visible");
+  startTimer();
   showQuestion(questionList[currentQ]);
 });
 
@@ -125,6 +104,26 @@ function checkAnswer(event) {
   } else {
     feedback.textContent = "Incorrect, try again.";
     score = score - 5;
-    // TODO: remove time from timer
+    timeLeft = timeLeft - 5;
   }
 }
+
+function startTimer() {
+  var timeInterval = setInterval(function () {
+    timerDisplay.textContent = timeLeft + " seconds";
+    timeLeft--;
+    if (finishButton.textContent === "Finish Quiz") {
+      timerDisplay.textContent = "";
+      clearInterval(timeInterval);
+    }
+    if (timeLeft === 0) {
+      clearInterval(timeInterval);
+      timerDisplay.textContent = "";
+      questionsDiv.setAttribute("style", "display: none");
+      finished.setAttribute("style", "visibility: visible");
+      scoreSpan.textContent = score;
+    }
+  }, 1000);
+}
+
+// TODO: stop timer when final question is answered correctly
