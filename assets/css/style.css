@@ -1,7 +1,27 @@
+body {
+  display: flex;
+}
+
+main {
+  width: 75%;
+}
+
+aside {
+  width: 25%;
+  text-align: right;
+  padding-top: 2rem;
+  padding-right: 2rem;
+}
+
 p {
   font-weight: bolder;
 }
 
 input {
   width: 5rem;
+}
+
+#finished,
+#score-display {
+  text-align: center;
 }

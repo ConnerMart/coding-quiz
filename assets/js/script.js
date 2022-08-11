@@ -59,7 +59,8 @@ questionList = [
 ];
 var currentQ = 0;
 var score = 0;
-var timeLeft = 30;
+var timeLeft = 60;
+quizFinished = false;
 
 // when the start button is clicked, make the start div disappear and the questions div appear, then run the showQuestions() function with an argument of the currentQ-position of the questionList, which is set to 0 to begin with, so the first question will be shown
 startButton.addEventListener("click", function (event) {
@@ -93,6 +94,7 @@ function checkAnswer(event) {
       showQuestion(questionList[currentQ]);
       // if there are no more questions in the questionList, create a "finish quiz" button and append it underneath the last question
     } else {
+      quizFinished = true;
       finishButton = document.createElement("button");
       finishButton.textContent = "Finish Quiz";
       // removes old event listener so that "finish quiz" buttons don't keep appearing if you keep clicking on the correct answer of the final question
@@ -115,12 +117,11 @@ function startTimer() {
   var timeInterval = setInterval(function () {
     timerDisplay.textContent = "Time: " + timeLeft + " seconds";
     timeLeft--;
-    // if (finishButton.textContent === "Finish Quiz") {
-    //   timerDisplay.textContent = "";
-    //   clearInterval(timeInterval);
-    // } // TODO: fix this
-    // TODO: stop timer from going into negatives
-    if (timeLeft === 0) {
+    if (quizFinished === true) {
+      timerDisplay.textContent = "";
+      clearInterval(timeInterval);
+    }
+    if (timeLeft < 1) {
       clearInterval(timeInterval);
       timerDisplay.textContent = "";
       questionsDiv.setAttribute("style", "display: none");
@@ -135,22 +136,26 @@ finished.addEventListener("submit", saveScore);
 function saveScore(event) {
   event.preventDefault();
   finished.setAttribute("style", "display: none");
-  // var scoreInfo = {
-  //   player: initials.value.trim(),
-  //   pointsScored: score,
-  // };
+
   localStorage.setItem("player", initials.value.trim());
   localStorage.setItem("score", score);
+
   showScores();
 }
 
 function showScores() {
   scoreDisplay.setAttribute("style", "visibility: visible");
+
   var savedPlayer = localStorage.getItem("player");
   var savedScore = localStorage.getItem("score");
 
-  console.log(savedPlayer);
-  console.log(savedScore);
-
   scoreBoard.textContent = savedPlayer + ": " + savedScore;
 }
+
+// TODO: figure out how to save multiple savedPlayers/savedScores ?
+
+// TODO: fix up CSS
+
+// TODO: write actual question/answer content
+
+// TODO: set final values for starting timeLeft, scores, etc.
