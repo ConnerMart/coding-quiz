@@ -137,25 +137,26 @@ function saveScore(event) {
   event.preventDefault();
   finished.setAttribute("style", "display: none");
 
-  localStorage.setItem("player", initials.value.trim());
-  localStorage.setItem("score", score);
+  var playerInfo = {
+    playerInitials: initials.value.trim(),
+    playerScore: score,
+  };
+  localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
 
   showScores();
 }
 
 function showScores() {
   scoreDisplay.setAttribute("style", "visibility: visible");
-
-  var savedPlayer = localStorage.getItem("player");
-  var savedScore = localStorage.getItem("score");
-
-  scoreBoard.textContent = savedPlayer + ": " + savedScore;
+  var savedScore = JSON.parse(localStorage.getItem("playerInfo"));
+  scoreBoard.textContent =
+    savedScore.playerInitials + ": " + savedScore.playerScore;
 }
 
 // TODO: figure out how to save multiple savedPlayers/savedScores ?
+// use .push() to add to local memory?
+// https://stackoverflow.com/questions/40843773/localstorage-keeps-overwriting-my-data
 
-// TODO: fix up CSS
+// TODO: polish CSS
 
 // TODO: write actual question/answer content
-
-// TODO: set final values for starting timeLeft, scores, etc.
