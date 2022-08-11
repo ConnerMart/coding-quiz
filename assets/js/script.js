@@ -10,6 +10,9 @@ feedback = document.querySelector("#feedback");
 finished = document.querySelector("#finished");
 scoreSpan = document.querySelector("#score");
 timerDisplay = document.querySelector("#timer");
+initials = document.querySelector("#initials");
+scoreDisplay = document.querySelector("#score-display");
+scoreBoard = document.querySelector("#scoreboard");
 
 // array of question objects, which each have values for their question text, answer choices, and correct answer choice
 questionList = [
@@ -110,12 +113,13 @@ function checkAnswer(event) {
 
 function startTimer() {
   var timeInterval = setInterval(function () {
-    timerDisplay.textContent = timeLeft + " seconds";
+    timerDisplay.textContent = "Time: " + timeLeft + " seconds";
     timeLeft--;
-    if (finishButton.textContent === "Finish Quiz") {
-      timerDisplay.textContent = "";
-      clearInterval(timeInterval);
-    }
+    // if (finishButton.textContent === "Finish Quiz") {
+    //   timerDisplay.textContent = "";
+    //   clearInterval(timeInterval);
+    // } // TODO: fix this
+    // TODO: stop timer from going into negatives
     if (timeLeft === 0) {
       clearInterval(timeInterval);
       timerDisplay.textContent = "";
@@ -126,4 +130,27 @@ function startTimer() {
   }, 1000);
 }
 
-// TODO: stop timer when final question is answered correctly
+finished.addEventListener("submit", saveScore);
+
+function saveScore(event) {
+  event.preventDefault();
+  finished.setAttribute("style", "display: none");
+  // var scoreInfo = {
+  //   player: initials.value.trim(),
+  //   pointsScored: score,
+  // };
+  localStorage.setItem("player", initials.value.trim());
+  localStorage.setItem("score", score);
+  showScores();
+}
+
+function showScores() {
+  scoreDisplay.setAttribute("style", "visibility: visible");
+  var savedPlayer = localStorage.getItem("player");
+  var savedScore = localStorage.getItem("score");
+
+  console.log(savedPlayer);
+  console.log(savedScore);
+
+  scoreBoard.textContent = savedPlayer + ": " + savedScore;
+}
