@@ -1,16 +1,25 @@
 body {
   display: flex;
+  height: 100vh;
+  margin: 0;
+  text-align: center;
 }
 
 main {
   width: 75%;
+  background-color: darkgray;
 }
 
 aside {
   width: 25%;
-  text-align: right;
+  text-align: center;
   padding-top: 2rem;
-  padding-right: 2rem;
+  background-color: lightgray;
+}
+
+button {
+  margin: 0 2rem;
+  width: 7rem;
 }
 
 p {

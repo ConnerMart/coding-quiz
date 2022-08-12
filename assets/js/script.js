@@ -1,59 +1,59 @@
-startButton = document.querySelector("#start-button");
-startPage = document.querySelector("#start-page");
-questionsDiv = document.querySelector("#questions");
-questionTextSpot = document.querySelector("#question-text");
-buttonA = document.querySelector("#choiceA");
-buttonB = document.querySelector("#choiceB");
-buttonC = document.querySelector("#choiceC");
-buttonD = document.querySelector("#choiceD");
-feedback = document.querySelector("#feedback");
-finished = document.querySelector("#finished");
-scoreSpan = document.querySelector("#score");
-timerDisplay = document.querySelector("#timer");
-initials = document.querySelector("#initials");
-scoreDisplay = document.querySelector("#score-display");
-scoreBoard = document.querySelector("#scoreboard");
+var startButton = document.querySelector("#start-button");
+var startPage = document.querySelector("#start-page");
+var questionsDiv = document.querySelector("#questions");
+var questionTextSpot = document.querySelector("#question-text");
+var buttonA = document.querySelector("#choiceA");
+var buttonB = document.querySelector("#choiceB");
+var buttonC = document.querySelector("#choiceC");
+var buttonD = document.querySelector("#choiceD");
+var feedback = document.querySelector("#feedback");
+var finished = document.querySelector("#finished");
+var scoreSpan = document.querySelector("#score");
+var timerDisplay = document.querySelector("#timer");
+var initials = document.querySelector("#initials");
+var scoreDisplay = document.querySelector("#score-display");
+var scoreBoard = document.querySelector("#scoreboard");
 
 // array of question objects, which each have values for their question text, answer choices, and correct answer choice
 questionList = [
   (question1 = {
-    text: "What is a question1?",
-    choiceA: "1A",
-    choiceB: "1B",
-    choiceC: "1C",
-    choiceD: "1D",
+    text: "What is the syntax for introducing a variable in JavaScript?",
+    choiceA: "v",
+    choiceB: "var",
+    choiceC: "vari",
+    choiceD: "variable",
     correctChoice: choiceB,
   }),
   (question2 = {
-    text: "What is a question2?",
-    choiceA: "2A",
-    choiceB: "2B",
-    choiceC: "2C",
-    choiceD: "2D",
+    text: "Items between [square brackets] are called a/an:",
+    choiceA: "set",
+    choiceB: "group",
+    choiceC: "list",
+    choiceD: "array",
     correctChoice: choiceD,
   }),
   (question3 = {
-    text: "What is a question3?",
-    choiceA: "3A",
-    choiceB: "3B",
-    choiceC: "3C",
-    choiceD: "3D",
+    text: "What is the term for the items in parentheses in a function declaration?",
+    choiceA: "arguments",
+    choiceB: "parameters",
+    choiceC: "conditions",
+    choiceD: "factors",
     correctChoice: choiceB,
   }),
   (question4 = {
-    text: "What is a question4?",
-    choiceA: "4A",
-    choiceB: "4B",
-    choiceC: "4C",
-    choiceD: "4D",
+    text: "Local storage can only store which data type?",
+    choiceA: "string",
+    choiceB: "numeric",
+    choiceC: "boolean",
+    choiceD: "function",
     correctChoice: choiceA,
   }),
   (question5 = {
-    text: "What is a question5?",
-    choiceA: "5A",
-    choiceB: "5B",
-    choiceC: "5C",
-    choiceD: "5D",
+    text: "What unit of time is used when setting an interval?",
+    choiceA: "minutes",
+    choiceB: "seconds",
+    choiceC: "milliseconds",
+    choiceD: "nanoseconds",
     correctChoice: choiceC,
   }),
 ];
@@ -153,7 +153,7 @@ function showScores() {
     savedScore.playerInitials + ": " + savedScore.playerScore;
 }
 
-// TODO: figure out how to save multiple savedPlayers/savedScores ?
+// TODO: figure out how to save multiple savedPlayers/savedScores
 // use .push() to add to local memory?
 // https://stackoverflow.com/questions/40843773/localstorage-keeps-overwriting-my-data
 
