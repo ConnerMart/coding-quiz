@@ -156,7 +156,3 @@ function showScores() {
 // TODO: figure out how to save multiple savedPlayers/savedScores
 // use .push() to add to local memory?
 // https://stackoverflow.com/questions/40843773/localstorage-keeps-overwriting-my-data
-
-// TODO: polish CSS
-
-// TODO: write actual question/answer content

@@ -7,19 +7,31 @@ body {
 
 main {
   width: 75%;
-  background-color: darkgray;
+  background-color: rgb(11, 112, 57);
 }
 
 aside {
   width: 25%;
   text-align: center;
   padding-top: 2rem;
-  background-color: lightgray;
+  background-color: rgb(30, 121, 71);
+}
+
+#question-text {
+  margin-bottom: 3rem;
 }
 
 button {
   margin: 0 2rem;
   width: 7rem;
+  background-color: rgb(104, 104, 122);
+  border-radius: 20%;
+  color: black;
+  font-weight: bolder;
+  margin-top: 1rem;
+}
+button:hover {
+  background-color: rgb(88, 88, 105);
 }
 
 p {
