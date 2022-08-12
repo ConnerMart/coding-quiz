@@ -142,7 +142,6 @@ function saveScore(event) {
     playerScore: score,
   };
   localStorage.setItem("playerInfo", JSON.stringify(playerInfo));
-
   showScores();
 }
 
@@ -152,7 +151,3 @@ function showScores() {
   scoreBoard.textContent =
     savedScore.playerInitials + ": " + savedScore.playerScore;
 }
-
-// TODO: figure out how to save multiple savedPlayers/savedScores
-// use .push() to add to local memory?
-// https://stackoverflow.com/questions/40843773/localstorage-keeps-overwriting-my-data
